@@ -79,7 +79,7 @@ body {
   aspect-ratio: 1;
 
   background-color: rgb(223, 188, 241);
-  cursor: pointer;
+  cursor: url("../pic/hammer.svg"), pointer;
 }
 
 .cell {
