@@ -1,17 +1,22 @@
+import Field from "./Field";
 import Goblin from "./Goblin";
 
 export default class Game {
   constructor() {
+    this.field = new Field().fieldElement;
     this.goblin = new Goblin().goblinElement;
-    this.startBtn = document.querySelector(".start-game");
-    this.previousIndex = null;
-    this.currentIndex = null;
-
+    this.field = new Field().fieldElement;
+    this.goblin = new Goblin().goblinElement;
     this.controller = document.querySelector(".controller");
-    this.cells = [...document.querySelectorAll(".cell")];
+    this.controller.after(this.field);
+    this.cells = [...this.field.querySelectorAll(".cell")];
+
+    this.startBtn = document.querySelector(".start-game");
     this.score = document.querySelector(".killed");
     this.missed = document.querySelector(".missed");
 
+    this.previousIndex = null;
+    this.currentIndex = null;
     this.previousScore = 0;
     this.currentScore = 0;
     this.missedCount = 0;
