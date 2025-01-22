@@ -11,6 +11,18 @@
 /******/ 	
 /************************************************************************/
 
+;// ./src/js/Field.js
+class Field {
+  constructor() {
+    this.fieldElement = document.createElement("div");
+    this.fieldElement.classList.add("field");
+    for (let i = 1; i < 17; i += 1) {
+      const cellElement = document.createElement("div");
+      cellElement.classList.add("cell", `cell-${i}`);
+      this.fieldElement.append(cellElement);
+    }
+  }
+}
 ;// ./src/pic/goblin.png
 const goblin_namespaceObject = __webpack_require__.p + "2dbd01ce16c0fa83cb67.png";
 ;// ./src/js/Goblin.js
@@ -25,16 +37,21 @@ class Goblin {
 }
 ;// ./src/js/Game.js
 
+
 class Game {
   constructor() {
+    this.field = new Field().fieldElement;
     this.goblin = new Goblin().goblinElement;
-    this.startBtn = document.querySelector(".start-game");
-    this.previousIndex = null;
-    this.currentIndex = null;
+    this.field = new Field().fieldElement;
+    this.goblin = new Goblin().goblinElement;
     this.controller = document.querySelector(".controller");
-    this.cells = [...document.querySelectorAll(".cell")];
+    this.controller.after(this.field);
+    this.cells = [...this.field.querySelectorAll(".cell")];
+    this.startBtn = document.querySelector(".start-game");
     this.score = document.querySelector(".killed");
     this.missed = document.querySelector(".missed");
+    this.previousIndex = null;
+    this.currentIndex = null;
     this.previousScore = 0;
     this.currentScore = 0;
     this.missedCount = 0;
